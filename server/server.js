@@ -17,6 +17,8 @@ const mainRouter = require("./routes/main");
 const accountsRouter = require("./routes/accounts");
 const accountsChartRouter = require("./routes/accounts_chart");
 const app = express();
+
+// 포트 설정
 require("dotenv").config();
 const PORT = process.env.PORT || 3001;
 
