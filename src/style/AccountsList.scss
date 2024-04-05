@@ -1,0 +1,19 @@
+.accountsList {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.css-1q1u3t4-MuiTableRow-root {
+  cursor: pointer;
+}

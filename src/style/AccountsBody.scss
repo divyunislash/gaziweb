@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.body {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #ecdfef;
+
+  .wrap {
+    width: 80%;
+    margin: 0 auto;
+    padding: 60px 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+}
+@media all and (max-width: 768px) {
+  .body {
+    .wrap {
+      width: 90%;
+      flex-flow: column wrap;
+      position: relative;
+      top: -30px;
+
+      .accountsArea {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.accountsArea {
+  width: 48%;
+}
+
+.nextNavigation {
+  display: flex;
+}

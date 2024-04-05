@@ -1,0 +1,43 @@
+.totalAccountsArea {
+  /*width: 48%;*/
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  .totalBox {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .total {
+      width: 48%;
+      height: 140px;
+      background: #bc37bf;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      color: #fff;
+      padding: 40px 35px;
+      font-family: "DNFBitBitv2";
+      font-size: 20px;
+      span {
+        font-size: 20px;
+        font-weight: bold;
+        position: relative;
+        top: 15px;
+      }
+    }
+    .totalIncome {
+      background: #1690fc;
+    }
+  }
+
+  @media all and (max-width: 768px) {
+    .totalBox {
+      width: 100%;
+    }
+  }
+}
