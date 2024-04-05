@@ -50,7 +50,7 @@ export default function Login() {
       <div className="title">
         <div className="login">로그인</div>
       </div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} method="GET">
         <div className="input">
           <div className="email">
             <div className="id">아이디</div>
