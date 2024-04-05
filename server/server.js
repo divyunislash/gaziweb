@@ -17,7 +17,7 @@ const mainRouter = require("./routes/main");
 const accountsRouter = require("./routes/accounts");
 const accountsChartRouter = require("./routes/accounts_chart");
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // CORS 설정
 app.use(cors());
