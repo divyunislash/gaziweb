@@ -20,7 +20,7 @@ const app = express();
 
 // 포트 설정
 require("dotenv").config();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // CORS 설정
 app.use(cors());
@@ -53,7 +53,7 @@ app.use(accountsRouter);
 // 3. 가계부 차트 화면
 app.use(accountsChartRouter);
 
-// server port 3001 할당
+// server port 할당
 // 클라이언트와 다른 번호로 충돌나지 않도록
 app.listen(PORT, () => {
   console.log(`Server Listening on ${PORT}`);
