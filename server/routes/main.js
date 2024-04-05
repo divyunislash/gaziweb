@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("../database/db");
 const authCheck = require("../common/authCheck");
 const router = express.Router();
+
 // 해시알고리즘 모듈
 const bcrypt = require("bcrypt");
 

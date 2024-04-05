@@ -17,6 +17,7 @@ const mainRouter = require("./routes/main");
 const accountsRouter = require("./routes/accounts");
 const accountsChartRouter = require("./routes/accounts_chart");
 const app = express();
+require("dotenv").config();
 const PORT = process.env.PORT || 3001;
 
 // CORS 설정
@@ -31,7 +32,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: "SecretTest505011^^",
+    secret: process.env.SESSION_SEC,
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
@@ -53,6 +54,5 @@ app.use(accountsChartRouter);
 // server port 3001 할당
 // 클라이언트와 다른 번호로 충돌나지 않도록
 app.listen(PORT, () => {
-  //console.log(`Server run : http://localhost:${port}/`);
   console.log(`Server Listening on ${PORT}`);
 });
