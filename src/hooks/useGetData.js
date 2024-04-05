@@ -10,7 +10,6 @@ export default function useGetData(url) {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
         if (!res.data.access) {
           navigate("/");
         }
