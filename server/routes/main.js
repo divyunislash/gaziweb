@@ -10,6 +10,7 @@ const bcrypt = require("bcrypt");
 router.get("/", (req, res) => {});
 
 // 접근 권한 확인
+/*
 router.get("/auth_check", (req, res) => {
   const equalId = authCheck.equalId(req.cookies.connect_id, req.session.id);
   const isLogined = authCheck.isLogined(req.session.is_logined);
@@ -22,7 +23,7 @@ router.get("/auth_check", (req, res) => {
 
   res.send(sendData);
 });
-
+*/
 // 로그인
 router.post("/login", (req, res) => {
   // 1. ID/Password 받아오기

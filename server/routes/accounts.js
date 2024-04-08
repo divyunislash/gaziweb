@@ -4,7 +4,9 @@ const authCheck = require("../common/authCheck");
 const router = express.Router();
 
 // 가계부 화면
-router.get("/accounts", (req, res) => {});
+router.get("/accounts", (req, res) => {
+  res.send(req.session.user_cd);
+});
 
 // 가계부 기본 데이터
 router.get("/accounts_data", (req, res) => {
@@ -13,6 +15,7 @@ router.get("/accounts_data", (req, res) => {
   const sendData = {
     access: false,
   };
+
   if (equalId && isLogined) {
     sendData.access = true;
     const sql1 =
