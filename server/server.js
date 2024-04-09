@@ -20,7 +20,7 @@ const app = express();
 
 // 포트 설정
 require("dotenv").config();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || "3001";
 
 // CORS 설정
 app.use(cors());
