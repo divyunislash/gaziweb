@@ -22,8 +22,15 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || "3001";
 
+// CORS_OPTIONS
+let corsOptions = {
+  origin: [process.env.DOMAIN_1, process.env.DOMAIN_2],
+  credentials: true,
+  methods: ["GET", "POST", "DELETE", "PUT"],
+};
+
 // CORS 설정
-app.use(cors());
+app.use(cors(corsOptions));
 // cookie-parser 설정
 app.use(cookieParser());
 
