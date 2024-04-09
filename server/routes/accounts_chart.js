@@ -1,4 +1,5 @@
 const express = require("express");
+const mysql = require("mysql");
 const db = require("../database/db");
 const router = express.Router();
 const authCheck = require("../common/authCheck");
@@ -22,7 +23,7 @@ router.get("/chart_data", (req, res) => {
       "from ((select category_cd, account_mount from gazi.accounts where user_cd = ?) " +
       "union all (select category_cd, 0 as account_mount from gazi.category )) as t " +
       "group by t.category_cd order by t.category_cd;";
-    const sql2s = db.format(sql2, req.session.user_cd);
+    const sql2s = mysql.format(sql2, req.session.user_cd);
 
     const sql3 =
       "select t.yearMonth, sum(account_mount) as account_mount " +
@@ -44,7 +45,7 @@ router.get("/chart_data", (req, res) => {
       "select '2024-11' as yearMonth, 0 as account_mount union " +
       "select '2024-12' as yearMonth, 0 as account_mount)) as t  " +
       "group by t.yearMonth order by t.yearMonth;";
-    const sql3s = db.format(sql3, req.session.user_cd);
+    const sql3s = mysql.format(sql3, req.session.user_cd);
 
     const sql4 =
       "select t.yearMonth, sum(account_mount) as account_mount " +
@@ -66,7 +67,7 @@ router.get("/chart_data", (req, res) => {
       "select '2024-11' as yearMonth, 0 as account_mount union " +
       "select '2024-12' as yearMonth, 0 as account_mount)) as t  " +
       "group by t.yearMonth order by t.yearMonth;";
-    const sql4s = db.format(sql4, req.session.user_cd);
+    const sql4s = mysql.format(sql4, req.session.user_cd);
 
     db.query(sql1 + sql2s + sql3s + sql4s, function (err, results) {
       if (err) console.log(err);

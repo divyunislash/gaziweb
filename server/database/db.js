@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 require("dotenv").config();
-const db = mysql.createConnection({
+
+const db = mysql.createPool({
   host: "127.0.0.1",
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
@@ -9,6 +10,7 @@ const db = mysql.createConnection({
   multipleStatements: true,
 });
 
-db.connect();
+//db.connect();
+//db.createpool();
 
 module.exports = db;

@@ -21,6 +21,8 @@
 .env.production
 .env.local
 
+# cache
+*/cache
 
 npm-debug.log*
 yarn-debug.log*

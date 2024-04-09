@@ -1,4 +1,5 @@
 const express = require("express");
+const mysql = require("mysql");
 const db = require("../database/db");
 const authCheck = require("../common/authCheck");
 const router = express.Router();
@@ -30,7 +31,10 @@ router.get("/accounts_data", (req, res) => {
       "WHERE A.user_cd = ? AND C.category_type = 'IN' " +
       "GROUP BY C.category_type ORDER BY  C.category_type) AS I ON O.user_cd = I.user_cd;";
 
-    const sql1s = db.format(sql1, [req.session.user_cd, req.session.user_cd]);
+    const sql1s = mysql.format(sql1, [
+      req.session.user_cd,
+      req.session.user_cd,
+    ]);
     const sql2 =
       "SELECT category_cd, category_type, CASE WHEN CATEGORY_TYPE = 'OUT' THEN CONCAT('[지출] ',CATEGORY_NM) ELSE CONCAT('[수입] ',CATEGORY_NM) END AS category_nm  FROM GAZI.CATEGORY ORDER BY CATEGORY_CD;";
 
@@ -40,7 +44,7 @@ router.get("/accounts_data", (req, res) => {
       "left outer join gazi.category as c " +
       "on a.category_cd = c.category_cd " +
       "where a.user_cd = ?) as t, (select @rownum := 0) tmp order by t.account_date)as n order by n.rownum desc;";
-    const sql3s = db.format(sql3, req.session.user_cd);
+    const sql3s = mysql.format(sql3, req.session.user_cd);
 
     db.query(sql1s + sql2 + sql3s, function (err, results) {
       if (err) console.log(err);
@@ -58,7 +62,7 @@ router.get("/accounts_data", (req, res) => {
 router.post("/add_account", (req, res) => {
   const sql =
     "insert into gazi.accounts(category_cd,user_cd,account_title,account_mount,account_date) values(?,?,?,?,?);";
-  const sqls = db.format(sql, [
+  const sqls = mysql.format(sql, [
     req.body.category_cd,
     req.session.user_cd,
     req.body.account_title,
@@ -74,7 +78,7 @@ router.post("/add_account", (req, res) => {
 // 지출 내역 삭제
 router.post("/delete_account", (req, res) => {
   const sql = "delete from gazi.accounts where account_cd = ?;";
-  const sqls = db.format(sql, req.body.account_cd);
+  const sqls = mysql.format(sql, req.body.account_cd);
   db.query(sqls, function (err) {
     if (err) console.log(err);
     res.send("삭제되었습니다.");
