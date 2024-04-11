@@ -27,12 +27,12 @@ router.get("/chart_data", (req, res) => {
 
     const sql3 =
       "select t.yearMonth, sum(account_mount) as account_mount " +
-      "from((select date_format(a.account_date,'%Y-%m') as yearMonth, a.account_mount " +
+      "from(select date_format(a.account_date,'%Y-%m') as yearMonth, a.account_mount " +
       "from gazi.accounts as a " +
       "left outer join gazi.category as c " +
       "on a.category_cd = c.category_cd " +
-      "where a.user_cd = ? and c.category_type = 'IN') union all " +
-      "(select '2024-01' as yearMonth, 0 as account_mount union " +
+      "where a.user_cd = ? and c.category_type = 'IN' union all " +
+      "select '2024-01' as yearMonth, 0 as account_mount union " +
       "select '2024-02' as yearMonth, 0 as account_mount union " +
       "select '2024-03' as yearMonth, 0 as account_mount union " +
       "select '2024-04' as yearMonth, 0 as account_mount union " +
@@ -43,18 +43,18 @@ router.get("/chart_data", (req, res) => {
       "select '2024-09' as yearMonth, 0 as account_mount union " +
       "select '2024-10' as yearMonth, 0 as account_mount union " +
       "select '2024-11' as yearMonth, 0 as account_mount union " +
-      "select '2024-12' as yearMonth, 0 as account_mount)) as t  " +
+      "select '2024-12' as yearMonth, 0 as account_mount) as t  " +
       "group by t.yearMonth order by t.yearMonth;";
     const sql3s = mysql.format(sql3, req.session.user_cd);
 
     const sql4 =
       "select t.yearMonth, sum(account_mount) as account_mount " +
-      "from((select date_format(a.account_date,'%Y-%m') as yearMonth, a.account_mount " +
+      "from(select date_format(a.account_date,'%Y-%m') as yearMonth, a.account_mount " +
       "from gazi.accounts as a " +
       "left outer join gazi.category as c " +
       "on a.category_cd = c.category_cd " +
-      "where a.user_cd = ? and c.category_type = 'OUT') union all " +
-      "(select '2024-01' as yearMonth, 0 as account_mount union " +
+      "where a.user_cd = ? and c.category_type = 'OUT' union all " +
+      "select '2024-01' as yearMonth, 0 as account_mount union " +
       "select '2024-02' as yearMonth, 0 as account_mount union " +
       "select '2024-03' as yearMonth, 0 as account_mount union " +
       "select '2024-04' as yearMonth, 0 as account_mount union " +
@@ -65,7 +65,7 @@ router.get("/chart_data", (req, res) => {
       "select '2024-09' as yearMonth, 0 as account_mount union " +
       "select '2024-10' as yearMonth, 0 as account_mount union " +
       "select '2024-11' as yearMonth, 0 as account_mount union " +
-      "select '2024-12' as yearMonth, 0 as account_mount)) as t  " +
+      "select '2024-12' as yearMonth, 0 as account_mount) as t  " +
       "group by t.yearMonth order by t.yearMonth;";
     const sql4s = mysql.format(sql4, req.session.user_cd);
 
