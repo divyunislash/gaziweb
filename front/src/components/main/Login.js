@@ -1,5 +1,5 @@
-import axios from "axios";
-//import { axiosInstance } from "../../config/axiosInstance";
+//import axios from "axios";
+import { axiosInstance } from "../../config/axiosInstance";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../../util/CookieUtil";
@@ -19,8 +19,8 @@ export default function Login() {
     });
 
     if (checkEmpty(login_id, password)) {
-      axios
-        .post("/api/login", userInfo, {
+      axiosInstance
+        .post("/login", userInfo, {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
