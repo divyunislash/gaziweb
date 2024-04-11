@@ -20,10 +20,10 @@ export default function Login() {
 
     if (checkEmpty(login_id, password)) {
       axios
-        .post(`${process.env.REACT_APP_HOST}login`, userInfo, {
+        .post("/api/login", userInfo, {
           headers: {
-            "Content-Type": "application/json",
             "Access-Control-Allow-Origin": process.env.REACT_APP_HOST,
+            "Content-Type": "application/json",
             "Access-Control-Allow-Credentials": true,
           },
         })
@@ -55,7 +55,7 @@ export default function Login() {
       <div className="title">
         <div className="login">로그인</div>
       </div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} method="POST">
         <div className="input">
           <div className="email">
             <div className="id">아이디</div>
