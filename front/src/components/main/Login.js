@@ -26,6 +26,7 @@ export default function Login() {
             "Content-Type": "application/json",
             "Access-Control-Allow-Credentials": true,
           },
+          withCredentials: true,
         })
         .then((response) => {
           const message = response.data.userCheck;
