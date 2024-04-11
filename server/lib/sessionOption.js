@@ -1,7 +1,7 @@
 require("dotenv").config();
 // MySQL에 저장할 세션의 옵션
 var options = {
-  host: "127.0.0.1",
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
