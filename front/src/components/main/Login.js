@@ -32,7 +32,7 @@ export default function Login() {
             alert(message);
             return false;
           } else {
-            //setCookie("connect_id", response.data.id, { maxAge: 7200 });
+            setCookie("connect_id", response.data.id, { maxAge: 7200 });
             navigate("/accounts");
           }
         })
