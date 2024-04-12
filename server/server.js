@@ -10,24 +10,28 @@ var sessionStore = new mySQLStore(sessionOption);
 // CORS 설정
 var cors = require("cors");
 
+// CORS_OPTIONS
+const domainList = [process.env.DOMAIN_1, process.env.DOMAIN_2];
+let corsOptions = {
+  origin: domainList,
+  credentials: true,
+  exposedHeaders: ["Content-Length", "X-Foo", "X-Bar"],
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "DELETE", "PUT"],
+};
+
 // cookie parser
 var cookieParser = require("cookie-parser");
 
 const mainRouter = require("./routes/main");
 const accountsRouter = require("./routes/accounts");
 const accountsChartRouter = require("./routes/accounts_chart");
+const { call } = require("body-parser");
 const app = express();
 
 // 포트 설정
 require("dotenv").config();
 const PORT = process.env.PORT || "3001";
-
-// CORS_OPTIONS
-let corsOptions = {
-  origin: [process.env.DOMAIN_1, process.env.DOMAIN_2],
-  credentials: true,
-  methods: ["GET", "POST", "DELETE", "PUT"],
-};
 
 // CORS 설정
 app.use(cors(corsOptions));

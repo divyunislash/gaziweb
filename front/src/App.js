@@ -5,7 +5,6 @@ import Accounts from "./components/accounts/Accounts";
 import AccountsChart from "./components/accounts_chart/AccountsChart";
 
 function App() {
-  //const server_url = process.env.REACT_APP_HOST;
   return (
     <div className="App">
       <BrowserRouter>

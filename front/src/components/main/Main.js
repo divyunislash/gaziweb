@@ -1,7 +1,7 @@
 import Login from "./Login";
 import "../../style/Main.scss";
 
-export default function Main({ server_url }) {
+export default function Main() {
   return (
     <div className="desktop1">
       <div className="bg1">
@@ -9,7 +9,7 @@ export default function Main({ server_url }) {
           <div className="logo"></div>
         </div>
       </div>
-      <Login server_url={server_url}></Login>
+      <Login></Login>
     </div>
   );
 }
