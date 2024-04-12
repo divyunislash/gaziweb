@@ -36,7 +36,7 @@ export default function Login() {
             navigate("/accounts");
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error.message));
     }
   }
 

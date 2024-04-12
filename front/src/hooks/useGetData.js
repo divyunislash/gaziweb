@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosInstance } from "../config/axiosInstance";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export default function useGetData(url) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
+    axiosInstance
       .get(url)
       .then((res) => {
         if (!res.data.access) {

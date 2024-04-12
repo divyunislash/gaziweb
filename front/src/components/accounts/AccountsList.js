@@ -10,7 +10,8 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import axios from "axios";
+//import axios from "axios";
+import { axiosInstance } from "../../config/axiosInstance";
 
 const columns = [
   { id: "rownum", label: "No.", minWidth: 50 },
@@ -53,7 +54,7 @@ export default function AccountsList({ accountsList }) {
     const account_cd = JSON.stringify({ account_cd: data });
 
     if (window.confirm("삭제하시겠습니까?")) {
-      axios
+      axiosInstance
         .post("/api/delete_account", account_cd, {
           headers: { "Content-Type": "application/json" },
         })

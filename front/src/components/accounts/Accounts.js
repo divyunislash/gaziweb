@@ -7,7 +7,7 @@ import TopBar from "../common/TopBar";
 import useGetData from "../../hooks/useGetData";
 
 export default function Accounts() {
-  const data = useGetData("/api/accounts_data");
+  const data = useGetData("/accounts_data");
 
   if (data.length === 0) {
     return <span>Loading....</span>;

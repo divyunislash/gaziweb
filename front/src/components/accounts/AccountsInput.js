@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
+import { axiosInstance } from "../../config/axiosInstance";
 import "../../style/AccountsInput.scss";
 import { Button } from "@mui/material";
-import axios from "axios";
 
 export default function AccountsInput({ categoryInfo }) {
   const dateNow = new Date();
@@ -31,8 +31,8 @@ export default function AccountsInput({ categoryInfo }) {
         account_mount: amountRef.current.value.replaceAll(",", ""),
       });
       if (window.confirm("제출하시겠습니까?")) {
-        axios
-          .post("/api/add_account", inputInfo, {
+        axiosInstance
+          .post("/add_account", inputInfo, {
             headers: { "Content-Type": "application/json" },
           })
           .then((response) => {
