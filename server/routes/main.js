@@ -19,7 +19,7 @@ router.post("/login", (req, res) => {
 
     // 2. DB에서 회원 조회
     db.query(
-      "SELECT * FROM GAZI.USER WHERE USER_ID = ?",
+      "select * from gazi.user where user_id = ?",
       login_id,
       function (error, results) {
         if (error) throw error;
