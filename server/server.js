@@ -20,6 +20,7 @@ let corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
+  preflightContinue: false,
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ["GET", "POST", "DELETE", "PUT"],
