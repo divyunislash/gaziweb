@@ -13,7 +13,13 @@ var cors = require("cors");
 // CORS_OPTIONS
 const domainList = [process.env.DOMAIN_1, process.env.DOMAIN_2];
 let corsOptions = {
-  origin: domainList,
+  origin: function (origin, callback) {
+    if (domainList.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ["GET", "POST", "DELETE", "PUT"],
