@@ -7,7 +7,7 @@ import { deleteCookie } from "../../util/CookieUtil";
 export default function TopBar() {
   const navigate = useNavigate();
   function logout() {
-    axios.get("/logout").then((res) => {
+    axiosInstance.get("/logout").then((res) => {
       deleteCookie("connect_id");
       if (res.data.success) {
         navigate("/");

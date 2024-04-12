@@ -30,8 +30,9 @@ router.post("/login", (req, res) => {
             if (result === true) {
               req.session.user_cd = results[0].user_cd;
               req.session.is_logined = true;
+              res.cookie("connect_id", req.session.id, { maxAge: 7200 });
               // 클라이언트에 세션 정보 (ID) 보내기
-              sendData.id = req.session.id;
+              //sendData.id = req.session.id;
               sendData.userCheck = "Y";
             } else {
               sendData.userCheck = "로그인 정보가 일치하지 않습니다.";
