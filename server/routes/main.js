@@ -54,6 +54,7 @@ router.post("/login", (req, res) => {
 
 // 로그아웃
 router.get("/logout", (req, res) => {
+  res.clearCookie("connect_id");
   req.session.destroy(function (err) {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({
