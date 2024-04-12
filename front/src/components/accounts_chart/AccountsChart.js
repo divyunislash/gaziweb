@@ -7,7 +7,7 @@ import useGetData from "../../hooks/useGetData";
 import TopBar from "../common/TopBar";
 
 export default function AccountsChart() {
-  const data = useGetData("/api/chart_data");
+  const data = useGetData("/chart_data");
 
   if (data.length === 0) {
     return <span>Loading....</span>;

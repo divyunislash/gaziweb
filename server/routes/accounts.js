@@ -13,6 +13,10 @@ router.get("/accounts", (req, res) => {
 router.get("/accounts_data", (req, res) => {
   const equalId = authCheck.equalId(req.cookies.connect_id, req.session.id);
   const isLogined = authCheck.isLogined(req.session.is_logined);
+
+  console.log(req.cookies.connect_id);
+  console.log(req.session.id);
+
   const sendData = {
     access: false,
   };

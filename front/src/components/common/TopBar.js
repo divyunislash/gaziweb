@@ -1,13 +1,13 @@
 import "../../style/TopBar.scss";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { axiosInstance } from "../../config/axiosInstance";
 import { deleteCookie } from "../../util/CookieUtil";
 
 export default function TopBar() {
   const navigate = useNavigate();
   function logout() {
-    axios.get("/api/logout").then((res) => {
+    axios.get("/logout").then((res) => {
       deleteCookie("connect_id");
       if (res.data.success) {
         navigate("/");
