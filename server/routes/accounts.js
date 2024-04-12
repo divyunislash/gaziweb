@@ -14,9 +14,6 @@ router.get("/accounts_data", (req, res) => {
   const equalId = authCheck.equalId(req.cookies.connect_id, req.session.id);
   const isLogined = authCheck.isLogined(req.session.is_logined);
 
-  console.log(req.cookies.connect_id);
-  console.log(req.session.id);
-
   const sendData = {
     access: false,
   };
@@ -24,23 +21,23 @@ router.get("/accounts_data", (req, res) => {
   if (equalId && isLogined) {
     sendData.access = true;
     const sql1 =
-      "SELECT O.outInfo, I.inInfo FROM (SELECT A.user_cd, SUM(A.account_mount) AS outInfo " +
-      "FROM gazi.accounts AS A " +
-      "LEFT OUTER JOIN gazi.category AS C ON A.category_cd = C.category_cd " +
-      "WHERE A.user_cd = ? AND C.category_type = 'OUT' " +
-      "GROUP BY C.category_type ORDER BY  C.category_type) AS O " +
-      "LEFT OUTER JOIN  (SELECT A.user_cd, SUM(A.account_mount) AS inInfo " +
-      "FROM gazi.accounts AS A " +
-      "LEFT OUTER JOIN gazi.category AS C ON A.category_cd = C.category_cd " +
-      "WHERE A.user_cd = ? AND C.category_type = 'IN' " +
-      "GROUP BY C.category_type ORDER BY  C.category_type) AS I ON O.user_cd = I.user_cd;";
+      "select O.outInfo, I.inInfo from (select A.user_cd, sum(A.account_mount) as outInfo " +
+      "from gazi.accounts as A " +
+      "left outer join gazi.category as C on A.category_cd = C.category_cd " +
+      "where A.user_cd = ? AND C.category_type = 'OUT' " +
+      "group by C.category_type order by  C.category_type) as O " +
+      "left outer join  (select A.user_cd, sum(A.account_mount) as inInfo " +
+      "from gazi.accounts as A " +
+      "left outer join gazi.category as C on A.category_cd = C.category_cd " +
+      "where A.user_cd = ? and C.category_type = 'IN' " +
+      "group by C.category_type order by  C.category_type) as I on O.user_cd = I.user_cd;";
 
     const sql1s = mysql.format(sql1, [
       req.session.user_cd,
       req.session.user_cd,
     ]);
     const sql2 =
-      "SELECT category_cd, category_type, CASE WHEN CATEGORY_TYPE = 'OUT' THEN CONCAT('[지출] ',CATEGORY_NM) ELSE CONCAT('[수입] ',CATEGORY_NM) END AS category_nm  FROM GAZI.CATEGORY ORDER BY CATEGORY_CD;";
+      "select category_cd, category_type, case when category_type = 'OUT' then concat('[지출] ',category_nm) else concat('[수입] ',category_nm) end as category_nm  from gazi.category order by category_cd;";
 
     const sql3 =
       "select * from (select @rownum := @rownum + 1 as rownum, t.* from (select a.account_cd, date_format(a.account_date,'%Y-%m-%d') as account_date, c.category_nm, a.account_title, a.account_mount " +
