@@ -9,12 +9,11 @@ router.get("/accounts_chart", (req, res) => {});
 
 // 차트 데이터
 router.get("/chart_data", (req, res) => {
-  const equalId = authCheck.equalId(req.cookies.connect_id, req.session.id);
   const isLogined = authCheck.isLogined(req.session.is_logined);
   const sendData = {
     access: false,
   };
-  if (equalId && isLogined) {
+  if (isLogined) {
     sendData.access = true;
     const sql1 =
       "select case when category_type = 'OUT' then concat('[지출] ',category_nm) else concat('[수입] ',category_nm) end as category_nm from category order by category_cd;";

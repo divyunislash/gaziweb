@@ -11,17 +11,13 @@ router.get("/accounts", (req, res) => {
 
 // 가계부 기본 데이터
 router.get("/accounts_data", (req, res) => {
-  const equalId = authCheck.equalId(req.cookies.connect_id, req.session.id);
   const isLogined = authCheck.isLogined(req.session.is_logined);
-
-  console.log(req.cookies.connect_id);
-  console.log(req.session.id);
 
   const sendData = {
     access: false,
   };
 
-  if (equalId && isLogined) {
+  if (isLogined) {
     sendData.access = true;
     const sql1 =
       "select O.outInfo, I.inInfo from (select A.user_cd, sum(A.account_mount) as outInfo " +
