@@ -15,9 +15,9 @@ const domainList = [process.env.DOMAIN_1, process.env.DOMAIN_2];
 let corsOptions = {
   origin: domainList,
   credentials: true,
-  exposedHeaders: ["Content-Length", "X-Foo", "X-Bar"],
   optionsSuccessStatus: 200,
   methods: ["GET", "POST", "DELETE", "PUT"],
+  maxAge: 3600,
 };
 
 // cookie parser

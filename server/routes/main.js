@@ -35,11 +35,11 @@ router.post("/login", (req, res) => {
           } else {
             sendData.userCheck = "로그인 정보가 일치하지 않습니다.";
           }
-          res.send(sendData);
+          res.json(sendData);
         });
       } else {
         sendData.userCheck = "등록되지 않은 회원입니다.";
-        res.send(sendData);
+        res.json(sendData);
       }
     }
   );
