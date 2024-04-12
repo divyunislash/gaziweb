@@ -11,10 +11,10 @@ var sessionStore = new mySQLStore(sessionOption);
 var cors = require("cors");
 
 // CORS_OPTIONS
-const domainList = [process.env.DOMAIN_1, process.env.DOMAIN_2];
+const domain = process.env.DOMAIN;
 let corsOptions = {
   origin: function (origin, callback) {
-    if (domainList.indexOf(origin) !== -1 || !origin) {
+    if (domain.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
