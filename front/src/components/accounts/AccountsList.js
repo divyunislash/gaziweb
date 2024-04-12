@@ -55,7 +55,7 @@ export default function AccountsList({ accountsList }) {
 
     if (window.confirm("삭제하시겠습니까?")) {
       axiosInstance
-        .post("/api/delete_account", account_cd, {
+        .post("/delete_account", account_cd, {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
