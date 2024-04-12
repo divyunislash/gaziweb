@@ -1,8 +1,6 @@
-//import axios from "axios";
 import { axiosInstance } from "../../config/axiosInstance";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setCookie } from "../../util/CookieUtil";
 
 export default function Login() {
   const [login_id, setId] = useState("");
@@ -32,7 +30,6 @@ export default function Login() {
             alert(message);
             return false;
           } else {
-            //setCookie("connect_id", response.data.id, { maxAge: 7200 });
             navigate("/accounts");
           }
         })
